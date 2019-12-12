@@ -69,23 +69,14 @@ import { FilterProduct } from './admin/admin-products/product.filter';
       {path: 'check-out', component: CheckOutComponent, canActivate: [AuthGuard] },
       {path: 'order-success', component: OrderSuccessComponent, canActivate: [AuthGuard] },
       {path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuard] },
-
-     
-      {
-        path: 'admin/products/new', 
-        component: ProductFormComponent, 
-        canActivate: [AuthGuard, AdminAuthGuard] 
-      },
-      {
-        path: 'admin/products/:id', 
-        component: ProductFormComponent, 
-        canActivate: [AuthGuard, AdminAuthGuard] 
-      },
+    
       {
         path: 'admin/products', 
-        component: AdminProductsComponent, 
-        canActivate: [AuthGuard, AdminAuthGuard] 
-      },
+        component: AdminProductsComponent, canActivate: [AuthGuard, AdminAuthGuard] , children: [
+          { path: 'admin/products/new', component: ProductFormComponent },
+          { path: 'admin/products/:id', component: ProductFormComponent }
+        ]},
+         
       {
         path: 'admin/orders', 
       component: AdminOrdersComponent, 
@@ -95,6 +86,7 @@ import { FilterProduct } from './admin/admin-products/product.filter';
 
 
     ])
+    
   ],
   providers: [
     AuthService,

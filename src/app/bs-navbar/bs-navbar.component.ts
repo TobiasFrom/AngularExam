@@ -10,9 +10,11 @@ import { AppUser } from '../models/app-user';
 export class BsNavbarComponent {
   appUser: AppUser;
 
-
   constructor(private auth: AuthService) {
     auth.appUser$.subscribe(appUser => this.appUser = appUser);
+
+    //Use this line when e2e testing else use above line
+    /* this.appUser = {name: "admin", email: "admin@admin.com", isAdmin: true} as AppUser; */
   }
 
   logout() {

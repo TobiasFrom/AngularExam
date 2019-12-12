@@ -8,24 +8,22 @@ describe('Product tests', () => {
     page = new AppPage();
   });
 
+   it('Dummy test', () => {
+    expect(true).toEqual(true);
+  });
 
-
-  it('1. should login with Google', () => {
-    browser.get('');
-    browser.sleep(2000)
-    element(by.id('loginLink')).click();
-    browser.sleep(3000)
-    element(by.id('GoogleLoginButton')).click();
-    expect(element(by.id('dropdown01')));
-
+  it('Dummy fail test', () => {
+    expect(true).toEqual(false);
   });
 
   it('should create new product', () => {
+    browser.ignoreSynchronization = true;
     browser.get('');
 
     element(by.id('dropdown01')).click();
+    browser.sleep(2000)
     element(by.id('dropdownManageProducts')).click();
-    browser.sleep(1000)
+    browser.sleep(2000)
 
     element.all(by.css('.card-img')).then((el) => {
       const before = el.length; // eg before = 3
@@ -50,6 +48,7 @@ describe('Product tests', () => {
 
 
   it('should delete a product', () => {
+    browser.ignoreSynchronization = true;
     element.all(by.css('.card-img')).then((elements) => {
       const prods = elements.length;
       element.all(by.css('editButton')).get(0).click();
