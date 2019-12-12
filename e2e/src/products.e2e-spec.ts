@@ -49,15 +49,16 @@ describe('Product tests', () => {
 
 
 
-  /* it('should delete a lift/trip', () => {
-    element.all(by.css('.example-card')).then((elements) => {
-      const trips = elements.length;
-      element.all(by.css('.delete-button')).get(1).click();
+  it('should delete a product', () => {
+    element.all(by.css('.card-img')).then((elements) => {
+      const prods = elements.length;
+      element.all(by.css('editButton')).get(0).click();
+      element(by.id('deleteButton')).click();
       element.all(by.css('.example-card')).then((elementsAfter) => {
-        expect(trips).toEqual(elementsAfter.length + 1);
+        expect(prods).toEqual(elementsAfter.length + 1);
       });
     });
-  }); */
+  });
 
 
 });
