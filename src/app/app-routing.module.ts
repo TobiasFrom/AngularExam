@@ -11,10 +11,11 @@ import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { AdminAuthGuard } from './admin-auth-guard.service';
 import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
-
+import { FormArrayExampleComponent } from './form-array-example/form-array-example.component';
 
 const routes: Routes = [
   {path: '', component: ProductsComponent, pathMatch: 'full' },
+  {path: 'formArrayExample', component: FormArrayExampleComponent },
   {path: 'products', component: ProductsComponent },
   {path: 'shopping-cart', component: ShoppingCartComponent },
   {path: 'login', component: LoginComponent },

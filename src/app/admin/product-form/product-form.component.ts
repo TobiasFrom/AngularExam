@@ -26,7 +26,7 @@ export class ProductFormComponent implements OnInit {
     private productService: ProductService,
     private productActions: ProductFormActions,
     private ngRedux: NgRedux<IAppState>) 
-    { 
+  { 
     this.categories$ = categoryService.getAll();
 
     this.ngRedux.select(x => x.products).subscribe((state) => {
@@ -39,9 +39,7 @@ export class ProductFormComponent implements OnInit {
         });
       }
     });
-
-
-    }
+  }
 
   ngOnInit() {
     //Hent specifikt produkt på Id.
@@ -61,9 +59,7 @@ export class ProductFormComponent implements OnInit {
     price: new FormControl('', Validators.required),
     category: new FormControl(),
     imageUrl: new FormControl('', Validators.required)
-
   });
-
 
   get title() {return this.productForm.get('title');}
 
@@ -72,7 +68,7 @@ export class ProductFormComponent implements OnInit {
   get imageUrl(){return this.productForm.get('imageUrl')}
 
   onSave(): void{
-    if(this.id) this.productService.update(this.id, this.productForm.value); 
+    if(this.id) this.productActions.edit_product_post(this.id, this.productForm.value);
     
     else this.productActions.create_product(this.productForm.value);
 
@@ -91,9 +87,4 @@ export class ProductFormComponent implements OnInit {
     //this.productService.delete(this.id);
     this.router.navigate(['/admin/products']);
   }
-
-
-
-  
-
 }

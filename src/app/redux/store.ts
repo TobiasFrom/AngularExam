@@ -13,8 +13,8 @@ export interface IAppState{
 export class ProductState{
     products: Product[];
     product: Product;
-
 }
+
 export const rootReducer = combineReducers<IAppState>({
     products: productsReducer,
     

@@ -18,13 +18,14 @@ export class ProductFormActions {
     static CREATE_PRODUCT: string = 'CREATE_PRODUCT';
     static FETCH_PRODUCTS: string = 'FETCH_PRODUCTS';
     static EDIT_PRODUCT: string = 'EDIT_PRODUCT';
+    static EDIT_PRODUCT_POST: string = 'EDIT_PRODUCT_POST';
     static DELETE_PRODUCT: string = 'DELETE_PRODUCT';
 
     create_product(product: Product): void {
         let uid =this.productService.create(product);
         product._id = uid.key; 
-
         console.log(product);
+
         this.ngRedux.dispatch({
             type: ProductFormActions.CREATE_PRODUCT,
             payload: product
@@ -51,13 +52,22 @@ export class ProductFormActions {
     });
     }
 
+    edit_product_post(id: string, product: Product){
+        this.productService.update(id, product);
+    
+        this.ngRedux.dispatch({
+            type: ProductFormActions.CREATE_PRODUCT,
+            payload: product
+        });
+
+    }
+
     delete_product(id: string){
         this.productService.delete(id)
 
             this.ngRedux.dispatch({
                 type: ProductFormActions.DELETE_PRODUCT,
                 payload: id
-            });
-               
+            });        
     }
 }

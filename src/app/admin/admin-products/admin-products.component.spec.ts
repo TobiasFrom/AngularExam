@@ -1,73 +1,175 @@
-// import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FilterProduct } from "./product.filter";
+import { Product } from 'src/app/models/product';
 
-// import { AdminProductsComponent } from './admin-products.component';
-// import { Product } from 'src/app/models/product';
+describe('Product Filter', () => {
+  
+    it('0.1: Return empty array if array of products is empty while searching on specific value. ', () => {
+    // Arrange
+      const filter = new FilterProduct() ;
+      const data = [];
+      const search = 'testSearch';
+      const expectedResult = [];
+  
+    // Act
+      const result = filter.transform(data, search);
+  
+    // Assert (expect)
+      expect(result).toEqual(expectedResult);
+    });
+  
+  
+    it('1.1: Find products by searching brand', () => {
+      
+    // Arrange
+      const filter = new FilterProduct() ;
 
-// const testData = [
-//   {_id: 'testId1', 
-//   title: 'Martins & Co1', 
-//   price: 1951, 
-//   category: 'testCat1', 
-//   imageUrl: 'testImageUrl1'} as Product,
+      const data = [{title: 'Martins & Co'} as Product];
+      const search = 'Martins & Co';
+      const expectedResult = data;
+  
+    // Act
+      const result = filter.transform(data, search);
+  
+    // Assert (expect)
+      expect(result).toEqual(expectedResult);
+    });
+  
+    it('1.0: Find products by searching price', () => {
+      
+    // Arrange
+      const filter = new FilterProduct() ;
+      
+      const data = [
+        {_id: 'testId', 
+        title: 'Martins & Co', 
+        price: 1950, 
+        category: 'testCat', 
+        imageUrl: 'testImageUrl'
+        }];
+  
+      const search = '1700';
+      const expectedResult = data;
+  
+    // Act
+      const result = filter.transform(data, search);
+  
+    // Assert (expect)
+      expect(result).toEqual(expectedResult);
+    });
+  
+    it('2.0: Dont find products when searching for something not in the array', () => {
+      
+    // Arrange
+        const filter = new FilterProduct() ;
+      
+        const data = [
+            {_id: 'testId', 
+            title: 'Martins & Co', 
+            price: 1950, 
+            category: 'testCat', 
+            imageUrl: 'testImageUrl'
+            }];
 
-//   {_id: 'testId2', 
-//   title: 'Martins & Co2', 
-//   price: 1952, 
-//   category: 'testCat2', 
-//   imageUrl: 'testImageUrl2'} as Product,
+        const search = '2000';
+        const expectedResult = [];
 
-//   {_id: 'testId3', 
-//   title: 'Martins & Co3', 
-//   price: 1953, 
-//   category: 'testCat3', 
-//   imageUrl: 'testImageUrl3'} as Product
-// ];
+    // Act
+        const result = filter.transform(data, search);
 
-// describe("Admin product Filter", () => {
-//   let fixture: ComponentFixture<AdminProductsComponent>;
+    // Assert (expect)
+        expect(result).toEqual(expectedResult);
+    });
+  
+  
+    it('2.1: Return all products when search is undefined', () => {
+    
+    // Arrange
+      const filter = new FilterProduct() ;
+      
+      const data = [
+        {_id: 'testId', 
+        title: 'Martins & Co', 
+        price: 1950, 
+        category: 'testCat', 
+        imageUrl: 'testImageUrl'
+        }];
+  
+      const search = undefined;
+      const expectedResult = data;
+  
+    // Act
+      const result = filter.transform(data, search);
+  
+    // Assert (expect)
+      expect(result).toEqual(expectedResult);
+    });
+  
+    it('2.1: Return all products when search is empty string', () => {
+    // Arrange
+      const filter = new FilterProduct() ;
+      
+      const data = [
+        {_id: 'testId', 
+        title: 'Martins & Co', 
+        price: 1950, 
+        category: 'testCat', 
+        imageUrl: 'testImageUrl'
+        }];
+  
+      const search = '';
+      const expectedResult = data;
+  
+    // Act
+      const result = filter.transform(data, search);
+  
+    // Assert (expect)
+      expect(result).toEqual(expectedResult);
+    });
+  
+  
+    it('3.0: Search for brand but the data does not contain brand', () => {
+      
+    // Arrange
+      const filter = new FilterProduct() ;
+      
+      const data = [
+        {_id: 'testId', 
+        title: 'Martins & Co', 
+        price: 1950, 
+        category: 'testCat', 
+        imageUrl: 'testImageUrl'
+        }];
+  
+      const search = 'noBrand';
+      const expectedResult = [];
+  
+    // Act
+      const result = filter.transform(data, search);
+  
+    // Assert (expect)
+      expect(result).toEqual(expectedResult);
+    });
+  
+    it('3.1: Search for a negative price - should return all products (data)', () => {
+    // Arrange
+      const filter = new FilterProduct() ;
+      
+      const data = [
+        {_id: 'testId', 
+        title: 'Martins & Co', 
+        price: 1950, 
+        category: 'testCat', 
+        imageUrl: 'testImageUrl'
+        }];
+  
+      const search = '-2';
+      const expectedResult = data;
+  
+    // Act
+      const result = filter.transform(data, search);
+  
+    // Assert (expect)
+      expect(result).toEqual(expectedResult);
+    });
 
-//   beforeEach(() => {
-//     TestBed.configureTestingModule({
-//       declarations: [AdminProductsComponent]
-//     });
-//   });
-
-//   it('0.1: Return empty array if array of procucts is empty while searching on specific value. ', () => {
-//     // Arrange
-//     let component: AdminProductsComponent;
-//     const search = 'shouldReturnEmptyArray';
-//     const expectedResult = [];
-
-//     // Act
-//     const result = component.filter(search);
-
-//     // Assert (expect)
-//     expect(result).toEqual(expectedResult);
-//   });
-
-
-
-
-
-//   it("1.0 Find product by searching category", () => {
-
-//     let component: AdminProductsComponent;
-//     const data = testData[0];
-//     const searchString = "testCat1";
-
-//     const expectedResult = [
-//       {_id: 'testId1', 
-//       title: 'Martins & Co1', 
-//       price: 1951, 
-//       category: 'testCat1', 
-//       imageUrl: 'testImageUrl1'} as Product,
-//     ];
-
-//     //Act: We want to search for destination = Gentofte
-//     const result = component.filter(searchString);
-
-//     //Assert: We want it to be equal to expected result.
-//     expect(result).toEqual(expectedResult);
-//   });
-
-// });
+   });

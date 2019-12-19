@@ -24,14 +24,6 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
   this.router.navigate(['/admin/products/', id]);
   console.log(id);
   }
-
-   //Har valgt at filtrere på client side, grunden datamængden ikke er stor på sådan en webshop... =Bedre oplevelse for brugeren, end at skulle lave et dyrt API kald.
-  filter(query: any){
-    this.filteredProducts = (query.toLowerCase()) ?
-      this.products.filter(p => p.title.toLowerCase().includes(query) || p.price >= query ) :
-      //Hvis bruger sletter søgeord, så skal filteredProducts sættes = products.
-      this.products;
-  }
   
   //sørger for at unsubscribe, når denne component livscyklus er udført.
   ngOnDestroy(){

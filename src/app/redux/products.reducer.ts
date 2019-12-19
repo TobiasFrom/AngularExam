@@ -6,9 +6,9 @@ import { Product } from '../models/product';
 
 const INITIAL_STATE: ProductState = {products: [], product: undefined};
 
-
 export function productsReducer(state: ProductState = INITIAL_STATE, action: any){
     switch(action.type) {
+        
         case ProductFormActions.FETCH_PRODUCTS:
             return tassign(state, {products: action.payload});
 
@@ -18,6 +18,10 @@ export function productsReducer(state: ProductState = INITIAL_STATE, action: any
             
         case ProductFormActions.EDIT_PRODUCT:
             return tassign(state, {product: action.payload});
+
+
+        case ProductFormActions.EDIT_PRODUCT_POST:
+            return tassign(state, {product: action.payload});    
 
         case ProductFormActions.DELETE_PRODUCT:
             const afterDeleteProds: Product[] = 
