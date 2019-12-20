@@ -12,6 +12,8 @@ import { AdminAuthGuard } from './admin-auth-guard.service';
 import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
 import { FormArrayExampleComponent } from './form-array-example/form-array-example.component';
+import { TobiasComponent } from './tobias/tobias.component';
+import { LiamComponent } from './liam/liam.component';
 
 const routes: Routes = [
   {path: '', component: ProductsComponent, pathMatch: 'full' },
@@ -20,31 +22,32 @@ const routes: Routes = [
   {path: 'shopping-cart', component: ShoppingCartComponent },
   {path: 'login', component: LoginComponent },
 
-  {path: 'check-out', component: CheckOutComponent, canActivate: [AuthGuard] },
-  {path: 'order-success', component: OrderSuccessComponent, canActivate: [AuthGuard] },
-  {path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuard] },
+  {path: 'check-out', component: CheckOutComponent, canActivate: [AuthGuard]},
+  {path: 'order-success', component: OrderSuccessComponent, canActivate: [AuthGuard]},
+  {path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuard], children: [
+    {path: 'tobias', component: TobiasComponent},
+    {path: 'liam', component: LiamComponent}
+  ]},
 
- 
   {
     path: 'admin/products/new', 
-    component: ProductFormComponent/* , 
-    canActivate: [AuthGuard, AdminAuthGuard] */ 
+    component: ProductFormComponent ,
+    canActivate: [AuthGuard, AdminAuthGuard]
   },
   {
     path: 'admin/products/:id', 
-    component: ProductFormComponent/* , 
-    canActivate: [AuthGuard, AdminAuthGuard] */ 
+    component: ProductFormComponent, 
+    canActivate: [AuthGuard, AdminAuthGuard] 
   },
   {
     path: 'admin/products', 
-    component: AdminProductsComponent/* , 
-    canActivate: [AuthGuard, AdminAuthGuard] */ 
+    component: AdminProductsComponent,
+    canActivate: [AuthGuard, AdminAuthGuard]
   },
-  {
+  { 
     path: 'admin/orders', 
-  component: AdminOrdersComponent, 
-  canActivate: [AuthGuard, AdminAuthGuard] 
-},
+    component: AdminOrdersComponent, 
+    canActivate: [AuthGuard, AdminAuthGuard]},
 ];
 
 @NgModule({

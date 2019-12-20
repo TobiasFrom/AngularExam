@@ -9,7 +9,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { environment } from 'src/environments/environment';
 import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
-import { HomeComponent } from './home/home.component';
 import { ProductsComponent } from './products/products.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { CheckOutComponent } from './check-out/check-out.component';
@@ -33,12 +32,13 @@ import { NgReduxRouter, NgReduxRouterModule } from '@angular-redux/router';
 import { IAppState, rootReducer } from './redux/store';
 import { FilterProduct } from './admin/admin-products/product.filter';
 import { FormArrayExampleComponent } from './form-array-example/form-array-example.component';
+import { TobiasComponent } from './tobias/tobias.component';
+import { LiamComponent } from './liam/liam.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BsNavbarComponent,
-    HomeComponent,
     ProductsComponent,
     ShoppingCartComponent,
     CheckOutComponent,
@@ -49,7 +49,9 @@ import { FormArrayExampleComponent } from './form-array-example/form-array-examp
     LoginComponent,
     ProductFormComponent,
     FilterProduct,
-    FormArrayExampleComponent
+    FormArrayExampleComponent,
+    TobiasComponent,
+    LiamComponent
   ],
   imports: [
     BrowserModule,

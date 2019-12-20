@@ -17,7 +17,7 @@ describe('Products reducer', () => {
         const expectedOutput =  {products: [], product: undefined};
 
         //ACT
-        const result = productsReducer(undefined, {});
+        const result = productsReducer(undefined, {undefined});
 
         //ASSERT
         expect(result).toEqual(expectedOutput);
@@ -45,11 +45,7 @@ describe('Products reducer', () => {
     it('Test if products is added to a non empty array', () =>{
         
         //ARRANGE
-        const prod: Product = {_id: 'testId10', 
-            title: 'Martins & Co10', 
-            price: 3951, 
-            category: 'testCat10', 
-            imageUrl: 'testImageUrl10'};
+        const prod: Product = ds.tempData[0];
         
         const inputState = {products: ds.tempData, product: undefined};
         const actionObj = {type: ProductFormActions.CREATE_PRODUCT, payload: prod};

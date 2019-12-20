@@ -6,8 +6,7 @@ import { routerReducer } from '@angular-redux/router';
 
 
 export interface IAppState{
-    products?: ProductState;
-     
+    products?: ProductState;  
 }
 
 export class ProductState{

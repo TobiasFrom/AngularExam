@@ -56,7 +56,7 @@ export class ProductFormActions {
         this.productService.update(id, product);
     
         this.ngRedux.dispatch({
-            type: ProductFormActions.CREATE_PRODUCT,
+            type: ProductFormActions.EDIT_PRODUCT_POST,
             payload: product
         });
 

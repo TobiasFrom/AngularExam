@@ -11,12 +11,12 @@ import { Observable } from 'rxjs';
 })
 export class AdminAuthGuard implements CanActivate {
 
-  constructor(private auth: AuthService, private userService: UserService) { }
+  constructor(private auth: AuthService) {}
 
-  //(Observable) - Fetcher FireBase user som så switcher til user fra userService
+  //(Observable) - Fetcher FireBase user  somså switcher til user fra userService
+  //Returner sandt el. falsk ift. til admin.
   canActivate(): Observable<boolean> {
     return this.auth.appUser$
       .map(appUser => appUser.isAdmin);
-     
   }
 }

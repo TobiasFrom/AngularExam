@@ -30,7 +30,7 @@ export class ProductFormComponent implements OnInit {
     this.categories$ = categoryService.getAll();
 
     this.ngRedux.select(x => x.products).subscribe((state) => {
-      if(state.product){
+      if(state.product && this.id){
         this.productForm.patchValue({
           title: state.product.title,
           price: state.product.price,

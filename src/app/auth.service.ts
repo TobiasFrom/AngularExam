@@ -19,10 +19,10 @@ export class AuthService {
 
   constructor(private afAuth: AngularFireAuth, 
               private route: ActivatedRoute, 
-              private userService: UserService)
-              {
+              private userService: UserService){
+                
               this.user$ = afAuth.authState;
-              }
+  }
   
 login() {
   let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
